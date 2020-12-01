@@ -1,16 +1,16 @@
 # Weflix
-Android Kotlin - TheMovieDB
+Android Kotlin - TheMovieDB API and Netflix Splashscreen
 
 Preview :
 - Main Screen
 - Movie Detail
--
+- Movie Player
 
 User Stories :
-- [ ] [Main Screen - Discover Movie Posters]
-- [ ] [Movie Info Screen - Details]
-- [ ] [Movie Trailer - Youtube Player]
-- [ ] [Movie Screen - Endless Scroll]
+- [ ] Main Screen - Discover Movie Posters
+- [ ] Movie Info Screen - Details]
+- [ ] Movie Trailer - Youtube Player
+- [ ] Movie Screen - Endless Scroll
 
 Implementation / Library Used :
 - [androidx.lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle)
@@ -22,3 +22,5 @@ Implementation / Library Used :
 - [Glide](https://github.com/bumptech/glide)
 - [androidx.paging](https://developer.android.com/jetpack/androidx/releases/paging)
 - [RxJava](https://github.com/ReactiveX/RxJava)
+
+- [NETFLIX-FONT LOGO](https://fontmeme.com/netflix-font/)
