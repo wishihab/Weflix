@@ -15,6 +15,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Buat APIService Url
+        buildConfigField("String" , "BASE_URL" , '"https://api.themoviedb.org"') // baseurl api
+        buildConfigField("String" , "IMAGE_URL" , '"https://image.tmdb.org/t/p/w185"') // image url
+        buildConfigField("String" , "API_KEY" , '"USE-YOUR-KEY"') // themoviedb APIKEY
     }
 
     buildTypes {
@@ -42,4 +47,41 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
+    // Library Update per 1 December 2020 16:12 WIB
+    // ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    // LiveData
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+
+    // Recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    // Cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // Youtube Player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    // Paging
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-alpha09'
+
+    // Rx
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
+    // End of Library ex
+
+
 }
