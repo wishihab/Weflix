@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
         val movieAdapter = MoviePagedListAdapter(this)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         val txtError = findViewById<TextView>(R.id.txtError)
-        val gridLayoutManager = GridLayoutManager(this, 1)
+        val gridLayoutManager = GridLayoutManager(this, 2)
 
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {

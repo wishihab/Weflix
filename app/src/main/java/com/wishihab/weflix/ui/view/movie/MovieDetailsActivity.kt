@@ -1,7 +1,9 @@
 package com.wishihab.weflix.ui.view.movie
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -21,11 +23,13 @@ import com.wishihab.weflix.data.movie.Client
 import com.wishihab.weflix.data.repo.NetworkState
 import com.wishihab.weflix.ui.viewmodel.movie.Detail
 import com.wishihab.weflix.ui.viewmodel.video.Result
+import com.wishihab.weflix.utils.movie.share
 
 class MovieDetailsActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MovieDetailsViewModel
     private lateinit var movieRepository: MovieDetailsRepository
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +37,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         val movieId: Int = intent.getIntExtra("id",1)
         val progressbar = findViewById<ProgressBar>(R.id.progress_bar)
+        val infoyoutube = findViewById<TextView>(R.id.infoyoutubeplayer)
         val txterror = findViewById<TextView>(R.id.txt_error)
         val apiService : ApiService = Client.getClient()
         movieRepository = MovieDetailsRepository(apiService)
@@ -49,6 +54,7 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         viewModel.networkState.observe(this, androidx.lifecycle.Observer {
             progressbar.visibility = if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
+            infoyoutube.visibility = if (it == NetworkState.LOADED) View.VISIBLE else View.GONE
             txterror.visibility = if (it == NetworkState.ERROR) View.VISIBLE else View.GONE
 
         })
@@ -57,6 +63,7 @@ class MovieDetailsActivity : AppCompatActivity() {
     fun bindUI( it: Detail){
         val tvtitle = findViewById<TextView>(R.id.tvtitle)
         val tvtagline = findViewById<TextView>(R.id.tvtagline)
+        val runtime = findViewById<TextView>(R.id.runtime)
         val tvrating = findViewById<TextView>(R.id.tvrating)
         val tvoverview = findViewById<TextView>(R.id.tvoverview)
         val ivposter = findViewById<ImageView>(R.id.ivposter)
@@ -65,6 +72,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         tvtagline.text = it.tagline
         tvrating.text = it.voteAverage.toString()
         tvoverview.text = it.overview
+        runtime.text = it.runtime.toString() + " Minutes"
 
         val moviePosterURL = IMAGE_URL + it.posterPath
         Glide.with(this)
@@ -92,7 +100,16 @@ class MovieDetailsActivity : AppCompatActivity() {
         }
 
     }
-
+    //next add to toolbar - sementara belum
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+            R.id.action_share -> {
+                share(this, "movie", viewModel.toString())
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     private fun getViewModel(movieId:Int): MovieDetailsViewModel {
         return ViewModelProviders.of(this, object : ViewModelProvider.Factory {

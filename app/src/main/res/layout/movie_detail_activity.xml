@@ -34,7 +34,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:visibility="visible"
             android:layout_width="match_parent"
@@ -48,11 +47,13 @@
                 android:layout_height="wrap_content"
                 tools:ignore="MissingConstraints">
                 <TextView
+                    android:id="@+id/infoyoutubeplayer"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="@color/white"
-                    android:text="KLIK POSTER UNTUK MEMULAI TRAILER"/>
+                    android:text="SENTUH POSTER UNTUK MEMBUKA TRAILER"/>
 
                 <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                     android:id="@+id/playerview"
@@ -69,12 +70,10 @@
 
             </LinearLayout>
 
-
-
             <FrameLayout
                 android:id="@+id/container_rating"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_margin="16dp"
                 android:padding="18dp"
                 android:background="@drawable/ic_rating"
@@ -83,8 +82,8 @@
 
                 <TextView
                     android:id="@+id/tvrating"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -118,7 +117,17 @@
                 app:layout_constraintStart_toStartOf="@id/tvtitle"
                 app:layout_constraintEnd_toEndOf="@id/tvtitle" />
             <TextView
-
+                android:id="@+id/runtime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:textColor="@color/grey"
+                tools:text="Duration"
+                app:layout_constraintTop_toBottomOf="@id/tvtagline"
+                app:layout_constraintStart_toStartOf="@id/tvtagline"
+                app:layout_constraintEnd_toEndOf="@id/tvtagline" />
+            <TextView
                 android:id="@+id/tvoverview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -129,8 +138,8 @@
                 android:layout_marginRight="8dp"
                 tools:text="Description"
                 app:layout_constraintStart_toStartOf="@id/container_rating"
-                app:layout_constraintTop_toBottomOf="@id/tvtagline"
-                app:layout_constraintEnd_toEndOf="@id/tvtitle"
+                app:layout_constraintTop_toBottomOf="@id/runtime"
+                app:layout_constraintEnd_toEndOf="@id/tvtagline"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
