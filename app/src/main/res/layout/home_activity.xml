@@ -8,10 +8,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.view.home.HomeActivity">
     <include
+        android:id="@+id/includeds"
         layout="@layout/toolbar_layout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        app:layout_constraintBottom_toBottomOf="@id/includeds"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
