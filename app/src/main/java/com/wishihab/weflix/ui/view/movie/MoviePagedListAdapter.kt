@@ -13,12 +13,15 @@ import com.wishihab.weflix.BuildConfig.IMAGE_URL
 import com.wishihab.weflix.R
 import com.wishihab.weflix.data.repo.NetworkState
 import com.wishihab.weflix.ui.viewmodel.movie.Result
-import java.util.*
+import kotlinx.android.synthetic.main.movie_items.view.*
+import kotlinx.android.synthetic.main.error_layout.view.*
+import kotlinx.android.synthetic.main.movie_detail_activity.view.*
 
 class MoviePagedListAdapter (public val context: Context) : PagedListAdapter<Result, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
     val MOVIE_VIEW_TYPE = 1
     val NETWORK_VIEW_TYPE = 2
+
 
     private var networkState: NetworkState? = null
 
@@ -53,7 +56,6 @@ class MoviePagedListAdapter (public val context: Context) : PagedListAdapter<Res
     override fun getItemCount(): Int {
         return super.getItemCount() + if (hasExtraRow()) 1 else 0
     }
-
     override fun getItemViewType(position: Int): Int {
         return if (hasExtraRow() && position == itemCount - 1) {
             NETWORK_VIEW_TYPE
@@ -76,17 +78,18 @@ class MoviePagedListAdapter (public val context: Context) : PagedListAdapter<Res
 
     }
 
-
     class MovieItemViewHolder (view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movie: Result?,context: Context) {
-//            itemView.tv_title.text = movie?.title
-//
-//
-//            val moviePosterURL = IMAGE_URL + movie?.posterPath
-//            Glide.with(itemView.context)
-//                .load(moviePosterURL)
-//                .into(itemView.iv_poster)
+            itemView.tv_title.text = movie?.title
+            itemView.tv_rating.text = movie?.voteAverage.toString()
+            itemView.tv_tag_line.text = movie?.releaseDate
+            itemView.tv_adult.visibility = if (movie?.adult == true) View.VISIBLE else View.GONE
+
+            val moviePosterURL = IMAGE_URL + movie?.posterPath
+            Glide.with(itemView.context)
+                .load(moviePosterURL)
+                .into(itemView.iv_poster)
 
             itemView.setOnClickListener{
                 val intent = Intent(context, MovieDetailsActivity::class.java)
@@ -102,22 +105,22 @@ class MoviePagedListAdapter (public val context: Context) : PagedListAdapter<Res
 
         fun bind(networkState: NetworkState?) {
             if (networkState != null && networkState == NetworkState.LOADING) {
-                itemView.progressBar.visibility = View.VISIBLE;
+                itemView.progress_bar.visibility = View.VISIBLE;
             }
             else  {
-                itemView.progress_bar_item.visibility = View.GONE;
+                itemView.progressError.visibility = View.GONE;
             }
 
             if (networkState != null && networkState == NetworkState.ERROR) {
-                itemView.error_msg_item.visibility = View.VISIBLE;
-                itemView.error_msg_item.text = networkState.msg;
+                itemView.txtError.visibility = View.VISIBLE;
+                itemView.txtError.text = networkState.msg;
             }
             else if (networkState != null && networkState == NetworkState.ENDOFLIST) {
-                itemView.error_msg_item.visibility = View.VISIBLE;
-                itemView.error_msg_item.text = networkState.msg;
+                itemView.txtError.visibility = View.VISIBLE;
+                itemView.txtError.text = networkState.msg;
             }
             else {
-                itemView.error_msg_item.visibility = View.GONE;
+                itemView.txtError.visibility = View.GONE;
             }
         }
     }

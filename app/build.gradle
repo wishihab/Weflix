@@ -17,8 +17,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // Buat APIService Url
-        buildConfigField("String" , "BASE_URL" , '"https://api.themoviedb.org"') // baseurl api
-        buildConfigField("String" , "IMAGE_URL" , '"https://image.tmdb.org/t/p/w185"') // image url
+        buildConfigField("String" , "BASE_URL" , '"https://api.themoviedb.org/3/"') // baseurl api
+        buildConfigField("String" , "IMAGE_URL" , '"https://image.tmdb.org/t/p/w342"') // image url
         buildConfigField("String" , "API_KEY" , '"USE-YOUR-KEY"') // themoviedb APIKEY
     }
 
@@ -50,7 +50,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    apply plugin: 'kotlin-android-extensions'
 
     // Library Update per 1 December 2020 16:12 WIB
     // ViewModel
@@ -83,7 +83,6 @@ dependencies {
     // Rx
     implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-
     // End of Library ex
 
 

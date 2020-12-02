@@ -3,11 +3,14 @@ package com.wishihab.weflix.ui.view.home
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.wishihab.weflix.R
 import com.wishihab.weflix.data.movie.ApiService
 import com.wishihab.weflix.data.movie.Client
@@ -18,7 +21,6 @@ import com.wishihab.weflix.ui.view.movie.MoviePagedListRepository
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var viewModel: HomeActivityViewModel
-
     lateinit var movieRepository: MoviePagedListRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +33,10 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel = getViewModel()
 
+        val recycleMovie = findViewById<RecyclerView>(R.id.recycleMovie)
         val movieAdapter = MoviePagedListAdapter(this)
-
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        val txtError = findViewById<TextView>(R.id.txtError)
         val gridLayoutManager = GridLayoutManager(this, 1)
 
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

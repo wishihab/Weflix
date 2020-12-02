@@ -2,7 +2,7 @@ package com.wishihab.weflix.ui.viewmodel.video
 
 import com.google.gson.annotations.SerializedName
 
-data class Response(
+data class Youtube(
     @SerializedName("id")
     val id: Int,
     @SerializedName("results")

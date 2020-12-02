@@ -2,6 +2,7 @@ package com.wishihab.weflix.data.movie
 
 import com.wishihab.weflix.ui.viewmodel.movie.Detail
 import com.wishihab.weflix.ui.viewmodel.movie.Response
+import com.wishihab.weflix.ui.viewmodel.video.Youtube
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,6 +17,6 @@ interface ApiService {
     fun getMovieDetails(@Path("movie_id") id: Int): Single<Detail>
 
     @GET("movie/{movie_id}/videos")
-    fun getVideo(@Path("movie_id") id: Int): Single<com.wishihab.weflix.ui.viewmodel.video.Response>
+    fun getVideo(@Path("movie_id") id: Int): Single<Youtube>
 
 }

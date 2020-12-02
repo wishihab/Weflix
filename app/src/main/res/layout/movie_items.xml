@@ -67,19 +67,34 @@
             app:layout_constraintStart_toStartOf="@id/tv_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            tools:text="20 November 2020"/>
+            tools:text="releasedate"/>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_adult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="start"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toStartOf="@id/tv_tag_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_tag_line"
+            tools:text="18+"/>
 
         <FrameLayout
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:padding="18dp"
-            android:background="@drawable/weflix_rating"
+            android:background="@drawable/ic_rating"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/tv_rating"
+                android:layout_marginLeft="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
