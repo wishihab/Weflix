@@ -3,10 +3,9 @@ Android Kotlin - TheMovieDB API and Netflix Splashscreen
 [NETFLIX-FONT LOGO](https://fontmeme.com/netflix-font/)
 
 
-Preview :
-- Main Screen
-- Movie Detail
-- Movie Player
+
+![Splashscreen](https://github.com/wishihab/Weflix/blob/master/splashscreen.PNG)
+
 
 User Stories :
 - [x] Main Screen - Discover Movie Posters
