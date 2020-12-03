@@ -17,6 +17,7 @@ import com.wishihab.weflix.data.movie.Client
 import com.wishihab.weflix.data.repo.NetworkState
 import com.wishihab.weflix.ui.view.movie.MoviePagedListAdapter
 import com.wishihab.weflix.ui.view.movie.MoviePagedListRepository
+import kotlinx.android.synthetic.main.home_activity.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -33,10 +34,7 @@ class HomeActivity : AppCompatActivity() {
 
         viewModel = getViewModel()
 
-        val recycleMovie = findViewById<RecyclerView>(R.id.recycleMovie)
         val movieAdapter = MoviePagedListAdapter(this)
-        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
-        val txtError = findViewById<TextView>(R.id.txtError)
         val gridLayoutManager = GridLayoutManager(this, 2)
 
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

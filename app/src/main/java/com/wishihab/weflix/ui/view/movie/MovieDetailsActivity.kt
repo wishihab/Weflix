@@ -24,6 +24,7 @@ import com.wishihab.weflix.data.repo.NetworkState
 import com.wishihab.weflix.ui.viewmodel.movie.Detail
 import com.wishihab.weflix.ui.viewmodel.video.Result
 import com.wishihab.weflix.utils.movie.share
+import kotlinx.android.synthetic.main.movie_detail_activity.*
 
 class MovieDetailsActivity : AppCompatActivity() {
 
@@ -36,9 +37,7 @@ class MovieDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.movie_detail_activity)
 
         val movieId: Int = intent.getIntExtra("id",1)
-        val progressbar = findViewById<ProgressBar>(R.id.progress_bar)
-        val infoyoutube = findViewById<TextView>(R.id.infoyoutubeplayer)
-        val txterror = findViewById<TextView>(R.id.txt_error)
+
         val apiService : ApiService = Client.getClient()
         movieRepository = MovieDetailsRepository(apiService)
 
@@ -53,20 +52,14 @@ class MovieDetailsActivity : AppCompatActivity() {
         })
 
         viewModel.networkState.observe(this, androidx.lifecycle.Observer {
-            progressbar.visibility = if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
-            infoyoutube.visibility = if (it == NetworkState.LOADED) View.VISIBLE else View.GONE
-            txterror.visibility = if (it == NetworkState.ERROR) View.VISIBLE else View.GONE
+            progress_bar.visibility = if (it == NetworkState.LOADING) View.VISIBLE else View.GONE
+            infoyoutubeplayer.visibility = if (it == NetworkState.LOADED) View.VISIBLE else View.GONE
+            txt_error.visibility = if (it == NetworkState.ERROR) View.VISIBLE else View.GONE
 
         })
     }
 
     fun bindUI( it: Detail){
-        val tvtitle = findViewById<TextView>(R.id.tvtitle)
-        val tvtagline = findViewById<TextView>(R.id.tvtagline)
-        val runtime = findViewById<TextView>(R.id.runtime)
-        val tvrating = findViewById<TextView>(R.id.tvrating)
-        val tvoverview = findViewById<TextView>(R.id.tvoverview)
-        val ivposter = findViewById<ImageView>(R.id.ivposter)
 
         tvtitle.text = it.title
         tvtagline.text = it.tagline
@@ -83,8 +76,6 @@ class MovieDetailsActivity : AppCompatActivity() {
 
     fun bindVideo( it: Result){
         val videoKey = it.key
-        val playerview = findViewById<YouTubePlayerView>(R.id.playerview)
-        val ivposter = findViewById<ImageView>(R.id.ivposter)
 
         ivposter.setOnClickListener {
             ivposter.visibility = View.GONE
